@@ -1,0 +1,1 @@
+Merged corrected site - assets in /assets. Replace placeholder files with real assets.
