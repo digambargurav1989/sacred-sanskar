@@ -1,1 +1,1 @@
-Merged corrected site - assets in /assets. Replace placeholder files with real assets.
+SacredSanskar Complete site (Marathi). Replace assets/fonts/Samarkan-Regular.woff2 with your font if available. Deploy on GitHub Pages or Netlify by uploading the contents of this folder.

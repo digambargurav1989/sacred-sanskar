@@ -1,164 +1,84 @@
 <!doctype html>
-<html lang="mr">
+<html lang='mr'>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>🌼 SacredSanskar.org – वैदिक पूजा व संस्कार सेवा</title>
-<link rel="icon" href="assets/mylogo.png">
-<style>
-@font-face{font-family:'SamarkanLocal';src:url('assets/fonts/Samarkan-Regular.woff2') format('woff2');font-weight:normal;font-style:normal;font-display:swap}
-:root{--saffron:#FFB300;--saffron-dark:#FF8C00;--cream:#fff6ec;--text:#3b2f1b;--muted:#8b6b4f}
-*{box-sizing:border-box}body{font-family:'Noto Sans Devanagari', 'SamarkanLocal', sans-serif;margin:0;background:var(--cream);color:var(--text)}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px;height:120px;background:linear-gradient(90deg,#FFB300,#FF8C00);position:fixed;top:0;left:0;right:0;z-index:10000;box-shadow:0 4px 12px rgba(0,0,0,0.12)}
-.logo-wrap{display:flex;align-items:center;gap:10px}
-.logo-wrap img{height:72px;border-radius:8px}
-.slok{flex:1;text-align:center;font-weight:700;color:var(--saffron-dark)}
-.vaidik-shloka{font-family:'SamarkanLocal','Tiro Devanagari Sanskrit','Noto Sans Devanagari', serif; font-size:1.6rem; color:#7b1f1f; text-shadow:2px 2px 6px rgba(0,0,0,0.35); letter-spacing:0.6px;}
-.auth{display:flex;gap:10px;align-items:center}
-.auth button{background:transparent;border:2px solid #fff8e1;color:#7b1f1f;padding:8px 12px;border-radius:22px;font-weight:700;cursor:pointer}
-.primary{background:#fff8e1;color:#7b1f1f;border:none}
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>🌼 SacredSanskar.org – वैदिक पूजा व संस्कार सेवा</title><link rel='stylesheet' href='styles.css'></head><body>
+<header class="header"><img src="assets/logo.png" class="site-logo" alt="logo">
+<div class="shloka">ॐ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः।<br>सर्वे भद्राणि पश्यन्तु मा कश्चित् दुःख भाग्भवेत्॥</div>
+<div>	<div class="social-icons-header">
+                <a href="#" target="_blank">
+                    <img src="assets/icons/fb1.PNG" alt="Facebook">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="assets/icons/yt1.PNG" alt="YouTube">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="assets/icons/insta3.PNG" alt="Instagram">
+                </a>
+</div></div>
 
-/* Sticky nav */
-.sticky-nav{position:fixed;top:120px;left:0;right:0;background:linear-gradient(90deg,#FF9933,#FFD480);padding:10px 18px;display:flex;justify-content:center;gap:12px;z-index:9999;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
-.sticky-nav .item{display:flex;align-items:center;gap:8px;background:#fff8e1;padding:8px 14px;border-radius:12px;text-decoration:none;color:#6b2f00;font-weight:700;box-shadow:0 4px 10px rgba(0,0,0,0.06);transition:transform 0.6s, box-shadow 0.6s}
-.sticky-nav .item img{width:22px;height:22px}
-.sticky-nav .item:hover{transform:scale(1.03);box-shadow:0 8px 22px rgba(255,180,70,0.18);filter:drop-shadow(0 0 8px rgba(255,160,60,0.18))}
-
-/* marquee & banner */
-.marquee{margin:12px 18px;padding:8px;background:linear-gradient(90deg,#fff3cd,#fff6ec);border-radius:8px;border:1px solid rgba(0,0,0,0.04);margin-top:16px}
-.banner{position:relative;height:360px;overflow:hidden;border-radius:10px;margin:0 18px}
-.banner img{position:absolute;width:100%;height:100%;object-fit:cover;top:0;left:0;opacity:0;transition:opacity 1s}
-.banner img.active{opacity:1}
-.banner .caption{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(255,250,240,0.85);padding:10px 16px;border-radius:8px;border:1px solid rgba(0,0,0,0.04);font-weight:700;color:var(--saffron-dark)}
-
-.container{max-width:1100px;margin:18px auto;padding:0 12px}
-.section{margin-top:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center}
-.card img.icon{width:84px;height:84px;border-radius:10px;object-fit:cover;margin-bottom:10px}
-.btn{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:8px;background:var(--saffron);color:#fff;text-decoration:none;font-weight:700}
-
-/* footer */
-footer{margin-top:26px;padding:18px 12px;background:var(--saffron);color:#fff;text-align:center}
-
-/* loading overlay (simple) */
-#loadOverlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at center, rgba(255,245,220,0.95), rgba(255,230,190,0.98));z-index:99999}
-#loadOverlay .om{font-family:'SamarkanLocal',serif;font-size:6rem;color:#b71c1c;text-shadow:0 8px 30px rgba(255,165,0,0.18), 0 3px 10px rgba(0,0,0,0.25)}
-#skipAnim{position:fixed;right:18px;bottom:18px;z-index:100000;background:#fff8e1;border:1px solid #ffd7a6;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700;color:#7b1f1f;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
-
-@media(max-width:900px){.vaidik-shloka{font-size:1.1rem}.logo-wrap img{height:56px}.banner{height:220px}}
-</style>
-</head>
-<body>
-
-<div id="loadOverlay" aria-hidden="false" role="dialog" aria-label="Loading sacred animation">
-  <div class="om" id="omSymbol">ॐ</div>
-</div>
-<button id="skipAnim">Skip Animation</button>
-<audio id="bellAudio" preload="auto"><source src="assets/bell_short.mp3" type="audio/mpeg"></audio>
-
-
-<!-- Updated header and sticky nav integrated into older content structure -->
-<header class="topbar">
-  <div class="logo-wrap">
-    <img src="assets/mylogo.png" alt="logo">
-  </div>
-
-  <div class="slok">
-    <div class="vaidik-shloka">ॐ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः।<br>सर्वे भद्राणि पश्यन्तु मा कश्चित् दुःख भाग्भवेत्॥</div>
-  </div>
-
-  <div class="auth">
-    <button onclick="alert('Login placeholder')">🔑 Login</button>
-    <button class="primary" onclick="alert('Signup placeholder')">🕉️ Sign Up</button>
-  </div>
 </header>
-
-<nav class="sticky-nav" role="navigation" aria-label="मुख्य मेनू">
-  <div class="item"><img src="assets/icons/icon_home.png" alt="">मुख्यपृष्ठ</div>
-  <div class="item"><img src="assets/icons/icon_puja.png" alt="">पूजा</div>
-  <div class="item"><img src="assets/icons/icon_sanskar.png" alt="">संस्कार</div>
-  <div class="item"><img src="assets/icons/icon_mantra.png" alt="">मंत्र / स्तोत्र</div>
-  <div class="item"><img src="assets/icons/icon_about.png" alt="">आमच्याविषयी</div>
-  <div class="item"><img src="assets/icons/icon_contact.png" alt="">संपर्क</div>
+<nav class="menu-bar">
+    <ul>
+        <li><img src="assets/icons/home2.PNG"><span>मुख्यपृष्ठ</span></li>
+        <li><img src="assets/icons/ganeshpuja.PNG"><span>पूजा</span></li>
+        <li><img src="assets/icons/sanskaras.png"><span>संस्कार</span></li>
+        <li><img src="assets/icons/mantras.png"><span>मंत्र / स्तोत्र</span></li>
+        <li><img src="assets/icons/aboutus.png"><span>आमच्याविषयी</span></li>
+        <li><img src="assets/icons/contactus.png"><span>संपर्क</span></li>
+    </ul>
 </nav>
+<div class="banner-wrapper"><div class="banner-carousel">
+  <div class="banner-slide"><img src="assets/banners/banner1.JPG"></div>
+  <div class="banner-slide"><img src="assets/banners/banner2.jpg"></div>
+  <div class="banner-slide"><img src="assets/banners/banner3.jpg"></div>
+  <div class="banner-slide"><img src="assets/banners/banner4.jpg"></div>
+</div></div>
+<marquee class="smooth-marquee" scrollamount="4" direction="left" behavior="scroll">
+✨ स्वागत आहे <strong>SacredSanskar.org - वैदिक पूजा व संस्कार सेवा</strong> वर — तुमच्या श्रद्धेचा वैदिक सहचर ✨
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+🔱 आम्ही गृहप्रवेश, सत्यनारायण, वास्तुशांती, भुमिपूजन, नामकरण, मुंडन, उपनयन, विवाह, नवचंडी, रुद्राभिषेक व सर्व वैदिक पूजा विधी अत्यंत श्रद्धेने करतो 🔱
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+🕉️ तसेच १६ संस्कार — गर्भाधान, पुंसवन, सीमंत, जातकर्म, नामकरण, अन्नप्राशन, मुंडन, कर्णवेध, उपनयन, विवाह, वानप्रस्थ, संन्यास इत्यादी सर्व संस्कार तज्ञ पंडितांमार्फत शास्त्रानुसार केले जातात 🕉️
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+🌸 सर्व सेवा परवडणाऱ्या दरात उपलब्ध | योग्य मुहूर्त मार्गदर्शन | पूजा साहित्याची संपूर्ण व्यवस्था 🌸
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+🙏 अनुभवा वैदिकतेचा पवित्र स्पर्श — फक्त <strong>SacredSanskar.org</strong> सोबत 🙏
+</marquee>
+<section style='padding:20px;text-align:center;background:#fff7ef'><h1 style='color:#6b1f1f;font-family:serif'>🌼 SacredSanskar.org – वैदिक पूजा व संस्कार सेवा केंद्र 🌼</h1><p>आम्ही शास्त्रोक्त पद्धतीने पूजा व संस्कार सेवा पुरवतो. बुकिंगसाठी WhatsApp: 9172992871</p></section>
+<section style='padding:25px;text-align:center;background:#fff7ef'><h2 style='color:#5a0000'>आमची ध्येय व दृष्टी</h2><p style='max-width:800px;margin:auto;color:#3a0000'>आमचे ध्येय प्रत्येक भाविकाला शुद्ध, सात्त्विक आणि शास्त्रोक्त पद्धतीने सर्व पूजा, संस्कार आणि मंत्रोपचार सेवा उपलब्ध करणे.</p></section>
+<section class='section' id='pujaSection'>
+<h2 style='color:#6b1f1f'>मुख्य पूजा सेवा</h2>
+<div class='grid'>
+<div class='card'>
+<img src='assets/pujas/GANESH.PNG'><h3>गृहप्रवेश पूजा</h3><p>लघु वर्णन.</p><a class='btn' href='puja-grihapravesh.html'>अधिक वाचा</a></div><div class='card'><img src='assets/pujas/satyanarayan.PNG'><h3>सत्यनारायण पूजा</h3><p>लघु वर्णन.</p><a class='btn' href='puja-satyanarayan.html'>अधिक वाचा</a></div><div class='card'><img src='assets/pujas/vastushanti.png'><h3>वास्तुशांती</h3><p>लघु वर्णन.</p><a class='btn' href='puja-vastu.html'>अधिक वाचा</a></div><div class='card'><img src='assets/pujas/nakshatrashanti.png'><h3>भूमिपूजन</h3><p>लघु वर्णन.</p><a class='btn' href='puja-bhoomi.html'>अधिक वाचा</a></div></div><div style='text-align:center;margin-top:12px'><a class='btn' href='pujas-all.html'>🔽 सर्व पूजा पहा</a></div></section>
+<section class='section' id='sanskarSection'><h2 style='color:#6b1f1f'>मुख्य संस्कार</h2><div class='grid'><div class='card'><img src='assets/sanskars/namkaran.png'><h3>नामकरण</h3><p>लघु वर्णन.</p><a class='btn' href='sanskar-garbhadhana.html'>अधिक वाचा</a></div><div class='card'><img src='assets/sanskars/munj2.png'><h3>मुंज / उपनयन</h3><p>लघु वर्णन.</p><a class='btn' href='sanskar-pumsavana.html'>अधिक वाचा</a></div><div class='card'><img src='assets/sanskars/vivah2.png'><h3>विवाह</h3><p>लघु वर्णन.</p><a class='btn' href='sanskar-simantonnayana.html'>अधिक वाचा</a></div><div class='card'><img src='assets/sanskars/shraddha2.png'><h3>श्राद्ध</h3><p>लघु वर्णन.</p><a class='btn' href='sanskar-jatakarma.html'>अधिक वाचा</a></div></div><div style='text-align:center;margin-top:12px'><a class='btn' href='sanskar-all.html'>🔽 सर्व संस्कार पहा</a></div></section>
+<section class='section' id='mantraSection'><h2 style='color:#6b1f1f'>मंत्र · श्लोक · स्तोत्रे</h2><div class='grid'><div class='card'><img src='assets/mantras/ganesha.jpg'><h3>ॐ गं गणपतये नमः</h3><p>लघु वर्णन.</p><a class='btn' href='mantra-ganesha.html'>अधिक वाचा</a></div><div class='card'><img src='assets/mantras/mahamrityunjaya.jpg'><h3>ॐ त्र्यम्बकं</h3><p>लघु वर्णन.</p><a class='btn' href='mantra-mahamrityunjaya.html'>अधिक वाचा</a></div><div class='card'><img src='assets/mantras/lakshmi.jpg'><h3>ॐ श्रीं</h3><p>लघु वर्णन.</p><a class='btn' href='mantra-lakshmi.html'>अधिक वाचा</a></div><div class='card'><img src='assets/mantras/hanuman.jpg'><h3>ॐ हं हनुमते नमः</h3><p>लघु वर्णन.</p><a class='btn' href='mantra-hanuman.html'>अधिक वाचा</a></div></div><div style='text-align:center;margin-top:12px'><a class='btn' href='mantras-all.html'>🔽 सर्व मंत्र पहा</a></div></section>
 
-<main style="padding-top:200px">
-  <div class="banner" aria-hidden="false">
-    <img src="assets/banner1.jpg" class="active" alt="banner1">
-    <img src="assets/banner2.jpg" alt="banner2">
-    <img src="assets/banner3.jpg" alt="banner3">
-    <img src="assets/banner4.jpg" alt="banner4">
-    <div class="caption">🙏 वैदिक पूजा आणि संस्कार – श्रद्धा, संस्कार आणि आध्यात्मिकता यांचा संगम 🙏</div>
+<footer class="ss-footer">
+  <div class="footer-top">
+    <div class="footer-blessing"><img src="assets/logo.png" class="footer-logo"><p class="footer-mantra">ॐ लोकाः समस्ताः सुखिनो भवन्तु ॥</p></div>
+    <div class="footer-col"><h3>त्वरित दुवे</h3><ul><li><a href="index.html">मुख्यपृष्ठ</a></li><li><a href="pujas-all.html">पूजा</a></li><li><a href="sanskar-all.html">संस्कार</a></li><li><a href="mantras-all.html">मंत्र / स्तोत्र</a></li><li><a href="about.html">आमच्याविषयी</a></li><li><a href="contact.html">संपर्क</a></li></ul></div>
+    <div class="footer-col"><h3>लोकप्रिय पूजा</h3><ul><li>सत्यनारायण पूजा</li><li>गृहप्रवेश पूजा</li><li>हवन / मंगल पूजा</li><li>नवग्रह शांती</li></ul></div>
+    <div class="footer-col"><h3>लोकप्रिय संस्कार</h3><ul><li>नामकरण</li><li>मुंज / उपनयन</li><li>विवाह</li><li>श्राद्ध</li></ul></div>
+    <div class="footer-col"><h3>संपर्क</h3><p>📞 +91 88502 60465</p><p>📩 support@sacredsanskar.org</p><p>🏠 महाराष्ट्र, भारत</p><a class="whatsapp-btn" href="https://wa.me/919172992871" target="_blank"></a>
+	<div class="social-icons-footer">
+                <a href="#" target="_blank">
+                    <img src="assets/icons/fb1.PNG" alt="Facebook">
+                </a>
+&nbsp;&nbsp;&nbsp;
+                <a href="#" target="_blank">
+                    <img src="assets/icons/yt1.PNG" alt="YouTube">
+                </a>
+&nbsp;&nbsp;&nbsp;
+                <a href="#" target="_blank">
+                    <img src="assets/icons/insta3.PNG" alt="Instagram">
+                </a>
+</div>
+            </div>
+	</div>
   </div>
-<marquee class="marquee"><div class="track">✨ स्वागत आहे SacredSanskar.org — तुमच्या श्रद्धेचा वैदिक सहचर ✨ &nbsp;&nbsp;&nbsp; 🔱 आम्ही गृहप्रवेश, सत्यनारायण, वास्तुशांती, भुमिपूजन, नामकरण, मुंडन, उपनयन, विवाह, नवचंडी, रुद्राभिषेक व सर्व वैदिक पूजा विधी अत्यंत श्रद्धेने करतो 🔱 &nbsp;&nbsp;&nbsp; 🕉️ तसेच १६ संस्कार — गर्भाधान, पुंसवन, सीमंत, जातकर्म, नामकरण, अन्नप्राशन, मुंडन, कर्णवेध, उपनयन, विवाह, वानप्रस्थ, संन्यास इत्यादी सर्व संस्कार तज्ञ पंडितांमार्फत शास्त्रानुसार केले जातात 🕉️ &nbsp;&nbsp;&nbsp; 🌸 सर्व सेवा परवडणाऱ्या दरात उपलब्ध | योग्य मुहूर्त मार्गदर्शन | पूजा साहित्याची संपूर्ण व्यवस्था 🌸 &nbsp;&nbsp;&nbsp; 🙏 अनुभवा वैदिकतेचा पवित्र स्पर्श — फक्त SacredSanskar.org सोबत 🙏</div></marquee>
-  <div class="container">
-    <section id="pujaSection" class="section">
-      <h2 style="color:var(--saffron-dark)">🪔 प्रमुख पूजा</h2>
-      <div class="grid">
-        <div class="card"><img class="icon" src="assets/pujas/grihapravesh.jpg"><h3>गृहप्रवेश पूजा</h3><p>नवीन घरात मंगल आणि समृद्धीसाठी पारंपरिक विधी.</p></div>
-        <div class="card"><img class="icon" src="assets/pujas/satyanarayan.jpg"><h3>सत्यनारायण पूजा</h3><p>कुटुंबातील समृद्धी व सौख्यसाठी कथा व विधी.</p></div>
-        <div class="card"><img class="icon" src="assets/pujas/vastu.jpg"><h3>वास्तुशांती</h3><p>घरातील वास्तुदोष दूर करण्यासाठी पूजन व उपाय.</p></div>
-        <div class="card"><img class="icon" src="assets/pujas/bhoomi.jpg"><h3>भूमिपूजन</h3><p>भूमी पवित्र करण्यासाठी व भवनारंभापूर्वी केले जाणारे पूजन.</p></div>
-      </div>
-    </section>
-
-    <section id="sanskarSection" class="section">
-      <h2 style="color:var(--saffron-dark)">🌸 प्रमुख संस्कार</h2>
-      <div class="grid">
-        <div class="card"><img class="icon" src="assets/sanskar/garbhadhana.jpg"><h3>गरभाधान</h3><p>गर्भधारणासाठी पारंपरिक विधी.</p></div>
-        <div class="card"><img class="icon" src="assets/sanskar/namakaran.jpg"><h3>नामकरण</h3><p>बाळाला शुभ नाव देण्याचा पवित्र संस्कार.</p></div>
-        <div class="card"><img class="icon" src="assets/sanskar/upanayan.jpg"><h3>उपनयन</h3><p>यज्ञोपवीत व धार्मिक शिक्षणाची सुरुवात.</p></div>
-        <div class="card"><img class="icon" src="assets/sanskar/vivah.jpg"><h3>विवाह</h3><p>विवाहातील पारंपरिक विधी व अनुष्ठान.</p></div>
-      </div>
-    </section>
-
-    <section id="mantraSection" class="section">
-      <h2 style="color:var(--saffron-dark)">📜 मंत्र · श्लोक · स्तोत्रे</h2>
-      <div class="grid">
-        <div class="card"><h3>ॐ गं गणपतये नमः</h3><p>गणेश आराधनाः — सर्व विघ्न नाशक.</p></div>
-        <div class="card"><h3>ॐ त्र्यम्बकं</h3><p>महा मृत्युंजय — आरोग्य आणि संरक्षणासाठी.</p></div>
-        <div class="card"><h3>ॐ श्रीं</h3><p>लक्ष्मी मंत्र — समृद्धीसाठी.</p></div>
-      </div>
-    </section>
-
-    <section id="contactSection" class="section">
-      <h2 style="color:var(--saffron-dark)">📞 संपर्क करा</h2>
-      <form id="contactForm" onsubmit="sendWhatsApp(event)" style="max-width:640px;margin:auto;display:flex;flex-direction:column;gap:10px">
-        <input id="name" placeholder="नाव" required style="padding:10px;border-radius:8px;border:1px solid #e6d7c0">
-        <input id="mobile" placeholder="मोबाईल क्रमांक" required style="padding:10px;border-radius:8px;border:1px solid #e6d7c0">
-        <select id="service" style="padding:10px;border-radius:8px;border:1px solid #e6d7c0">
-          <option value="">-- पूजा / संस्कार निवडा --</option>
-          <option>गृहप्रवेश पूजा</option>
-          <option>सत्यनारायण पूजा</option>
-          <option>वास्तुशांती</option>
-          <option>भूमिपूजन</option>
-          <option>गरभाधान</option>
-          <option>नामकरण</option>
-        </select>
-        <textarea id="message" placeholder="आपला संदेश (पर्यायी)" style="padding:10px;border-radius:8px;border:1px solid #e6d7c0"></textarea>
-        <button class="btn" type="submit">WhatsApp वर बुक करा</button>
-      </form>
-    </section>
-  </div>
-
-  <footer>
-    <div>© 2025 SacredSanskar.org | सर्व हक्क राखीव</div>
-    <div style="margin-top:6px;font-weight:700">Developed with devotion by SacredSanskar.org</div>
-  </footer>
-</main>
-
-<script>
-// banner slider
-let bidx=0;const banners=document.querySelectorAll('.banner img');setInterval(()=>{if(banners.length){banners[bidx].classList.remove('active');bidx=(bidx+1)%banners.length;banners[bidx].classList.add('active');}},3000);
-
-// marquee handled by CSS animation? we used JS fallback minimal
-// whatsapp contact
-function sendWhatsApp(e){e.preventDefault();const name=encodeURIComponent(document.getElementById('name').value||'');const mobile=encodeURIComponent(document.getElementById('mobile').value||'');const service=encodeURIComponent(document.getElementById('service').value||'');const msg=encodeURIComponent(document.getElementById('message').value||'');const text='🙏 नमस्कार, माझे नाव: '+name+'%0Aमोबाईल: '+mobile+'%0Aसेवा: '+service+'%0Aमाहिती: '+msg;window.open('https://wa.me/919172992871?text='+text,'_blank')}
-
-// loading overlay and skip
-const overlay=document.getElementById('loadOverlay');const skipBtn=document.getElementById('skipAnim');const bell=document.getElementById('bellAudio');
-const KEY='sacred_om_played_v2';if(localStorage.getItem(KEY)==='skipped' || localStorage.getItem(KEY)==='done'){overlay.style.display='none';skipBtn.style.display='none';}else{try{bell.play().catch(()=>{});}catch(e){}setTimeout(()=>{overlay.style.display='none';skipBtn.style.display='none';try{localStorage.setItem(KEY,'done')}catch(e){}},2000);}skipBtn.addEventListener('click',()=>{try{localStorage.setItem(KEY,'skipped')}catch(e){}overlay.style.display='none';skipBtn.style.display='none';});
-</script>
-</body>
-</html>
+  <div class="footer-bottom"><p>© 2025 SacredSanskar.org – सर्व हक्क सुरक्षित.</p></div>
+</footer>
+<div class='whatsapp-btn' onclick="openWhatsAppPopup()"><img src='assets/icons/whatsapp.png'></div><div id='waPopup' class='popup'><div class='popup-content'><span style='position:absolute;right:10px;top:8px;cursor:pointer' onclick='closeWhatsAppPopup()'>✖</span><h3 style='color:#7b1f1f;text-align:center'>WhatsApp बुकिंग</h3><input id='bk_name' placeholder='नाव'><input id='bk_mobile' placeholder='मोबाईल'><input id='bk_addr' placeholder='पत्ता'><select id='bk_service'><option>सेवा निवडा</option><option value='गृहप्रवेश पूजा'>गृहप्रवेश पूजा</option><option value='सत्यनारायण पूजा'>सत्यनारायण पूजा</option><option value='वास्तुशांती'>वास्तुशांती</option><option value='भूमिपूजन'>भूमिपूजन</option><option value='रुद्राभिषेक'>रुद्राभिषेक</option><option value='नवचंडी पूजा'>नवचंडी पूजा</option><option value='गणेश स्थापना'>गणेश स्थापना</option><option value='कुलदेवता पूजा'>कुलदेवता पूजा</option><option value='कथा पूजा'>कथा पूजा</option><option value='लक्ष्मी पूजा'>लक्ष्मी पूजा</option><option value='हनुमान पूजा'>हनुमान पूजा</option><option value='सुंदरकांड'>सुंदरकांड</option><option value='नारायण सेवा'>नारायण सेवा</option><option value='सात्विक पूजा'>सात्विक पूजा</option><option value='अग्रायण पूजा'>अग्रायण पूजा</option><option value='जन्मांतर्पूजा'>जन्मांतर्पूजा</option><option value='प्रसन्नता पूजा'>प्रसन्नता पूजा</option><option value='शांती पूजा'>शांती पूजा</option><option value='अन्नप्राशन'>अन्नप्राशन</option><option value='विशेष होमम'>विशेष होमम</option><option value='गरभाधान'>गरभाधान</option><option value='पुंसवन'>पुंसवन</option><option value='सीमंतोन्नयन'>सीमंतोन्नयन</option><option value='जातकर्म'>जातकर्म</option><option value='नामकरण'>नामकरण</option><option value='अन्नप्राशन'>अन्नप्राशन</option><option value='मुंडन'>मुंडन</option><option value='कर्णवेध'>कर्णवेध</option><option value='उपनयन'>उपनयन</option><option value='विवाह'>विवाह</option><option value='गृहप्रवेश संस्कार'>गृहप्रवेश संस्कार</option><option value='उपनयन (अतिरिक्त)'>उपनयन (अतिरिक्त)</option><option value='उपनयन (विशेष)'>उपनयन (विशेष)</option><option value='संन्यास'>संन्यास</option><option value='वानप्रस्थ'>वानप्रस्थ</option><option value='श्राद्ध'>श्राद्ध</option></select><textarea id='bk_msg' placeholder='संदेश'></textarea><button onclick='sendWhatsAppBooking()'>WhatsApp वर बुक करा</button></div></div><script src='script.js'></script></body></html>
